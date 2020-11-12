@@ -1,24 +1,26 @@
-;-------------------------------------------------------;
-;		      hello world			;
-;		   without an extern			;
-;-------------------------------------------------------;
-
-default rel
-
-SECTION .data
-	msg:	db "UwU ^u^ ^o^", 10
-	len:	equ $-msg
-
-SECTION .text
-	global		_main
-
-	_main:
-		mov	rax, 0x02000004
-		mov	rdi, 1
-		mov	rsi, msg
-		mov	rdx, len
-		syscall
-
-		mov	rax, 0x02000001
-		xor	rdi, rdi
-		syscall
+;-------------------------------------------------------;-----------------------------------;
+;		      hello world			;           the comment             ;
+;		   without an extern			;             section               ;
+;-------------------------------------------------------;-----------------------------------;
+							;            written in		    ;
+default rel						;	       nano ^u^		    ;
+							;-----------------------------------;
+SECTION .data						;				    ;
+	msg:	db "UwU ^u^ ^o^", 10			;           +  string		    ;
+	len:	equ $-msg				;        + string length	    ;
+							;				    ;
+SECTION .text						;-----------------------------------;
+	global		_main				;				    ;
+							;-----------------------------------;
+	_main:						;				    ;
+		mov	rax, 0x02000004			;   + magic sys_write num to rax    ;
+		mov	rdi, 1				;            + stdout               ;
+		mov	rsi, msg			;	+ address of string         ;
+		mov	rdx, len			;        + length of string         ;
+		syscall					;         + syscall go brrr         ;
+							;				    ;
+		mov	rax, 0x02000001			;	  + magic sys_exit	    ;
+		xor	rdi, rdi			;	    + exit code 0           ;
+		syscall					;	      + bye                 ;
+							;				    ;
+;-------------------------------------------------------;-----------------------------------;
